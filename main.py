@@ -4,6 +4,8 @@ import matplotlib.pyplot as plt
 from pathlib import Path
 import logging
 
+from market_summary_pdf_gen import  retrieve_csv_summary_data, retrieve_png_files_list, generate_pdf_report, run
+
 # Target Folder is "Log"
 def setup_logging(target_folder):
     log_folder = Path(target_folder)
@@ -59,7 +61,7 @@ def calculate_statistics(df):
     summary = pd.DataFrame([{
         'Mean Return': valid_returns.mean(),
         'Standard Deviation': valid_returns.std(),
-        'Annualized Volatility': valid_returns.std() * np.sqrt(len(valid_returns) * 252),
+        'Annualized Volatility': valid_returns.std() * np.sqrt(252),
         'Max Gain': valid_returns.max(),
         'Max Loss': valid_returns.min(),
     }])
@@ -198,5 +200,6 @@ def Run(target_folder='Output', log_folder='Log'):
     upload_statistics(statistics_data, target_folder)
     generate_charts_png(df, statistics_data['series'], target_folder)
     logger.info("Market summary tool completed successfully.")
+    run(target_folder, log_folder)
 
 Run()

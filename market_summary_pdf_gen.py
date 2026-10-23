@@ -52,16 +52,16 @@ def retrieve_png_files_list(target_folder):
     return png_files
 
 def generate_customer_paragraph(mean_return, std_dev,  annualized_volatility):
-    if annualized_volatility > 20:
+    if annualized_volatility > 0.2:
         annualized_statement = "The market is highly volatile."
-    elif annualized_volatility > 10:
+    elif annualized_volatility > 0.1:
         annualized_statement = "The market is moderately volatile."
     else:
         annualized_statement = "The market is relatively stable."
 
-    if mean_return > 2:
+    if mean_return > 0.02:
         return_statement = "Overall, the market has shown positive returns."
-    elif mean_return < -2:
+    elif mean_return < -0.02:
         return_statement = "Overall, the market has shown negative returns."
     else:
         return_statement = "Overall, the market has shown no significant returns."
@@ -111,13 +111,9 @@ def generate_pdf_report(target_folder, mean_return, std_dev, annualized_volatili
     doc.build(story)
 
     
-def run(target_folder, logging_file = "Log"):
-    logger =setup_logging(logging_file)
+def run(target_folder = "Output", logging_file = "Log"):
+    logger = setup_logging(logging_file)
     mean_return, std_dev, annualized_volatility = retrieve_csv_summary_data(target_folder)
     png_files = retrieve_png_files_list(target_folder)
     generate_pdf_report(target_folder, mean_return, std_dev, annualized_volatility, png_files)
-
-
-target_folder = "Output"
-run(target_folder)
 

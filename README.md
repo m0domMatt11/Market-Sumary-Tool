@@ -8,8 +8,7 @@ Requires a python IDE and python interpreter to run.
 1. Pull the code or copy the code and file structure from the git hub repository
 2. Identify the "target folder" variable this is set to "Output" by default. Feel free to edit the name of the folder you would like the results to be inputted to by: changing the variable "main.py" and changing the name of the "Output" folder accordingly
 3. Place the CSV file of daily data into the "Data" folder with the format of (Year-Month-Day) purely numerical: for example "2026-08-07.csv" for the 7th of August 2026.
-4. Run market-summary-pdf-gen.py first to ensure the functions that are to be imported by main.py are recogniseable
-5. Run main.py
+4. Run main.py
 6. Find results with the designated output folder under todays date
 
 # For multiple use
